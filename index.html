@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Share Data Using NFC</title>
+<link rel="stylesheet" href="css/BlackBerry-JQM-all-1.0.0.css">
+<script src="js/BlackBerry-JQM-all-1.0.0.js"></script>
+<script src="local:///chrome/webworks.js"></script>
+<style>
+img {
+	vertical-align: middle;
+	margin-right: 10px;
+}
+#data, #log {
+	text-align:center;
+}
+</style>
+<script>
+var myPIN;
+
+function onSuccess() {
+   document.getElementById("log").innerHTML="Invocation sucessful";
+}
+
+function onError(error) {
+  document.getElementById("log").innerHTML="Invocation error: " + error + "";
+}
+
+function invokeNFC() {
+    blackberry.invoke.invoke({
+        target: "sys.NFCViewer",
+        action: "bb.action.SHARE",
+        data: "Hola este es mi PIN: "+myPIN,
+		type: "text/plain"
+    }, onSuccess, onError);
+}
+
+function init(){
+	myPIN = blackberry.identity.uuid;
+	document.getElementById("data").innerHTML = "PIN: "+myPIN;
+	document.getElementById("btnNFC").onclick = invokeNFC;
+}
+</script>
+</head>
+
+<body onLoad="javascript:init();">
+<div data-role="page">
+  <div data-role="header" data-theme="b" data-position="fixed">
+    <h1>Share Data Using NFC</h1>
+  </div>
+  <div data-role="content"> <a href="#" id="btnNFC" data-role="button"><img src="img/icoNFC.png" width="60" height="60">Share My PIN</a>
+    <div id="data"></div>
+    <div id="log"></div>
+  </div>
+</div>
+</body>
+</html>

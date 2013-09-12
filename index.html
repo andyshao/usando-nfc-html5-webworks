@@ -19,11 +19,11 @@ img {
 var myPIN;
 
 function onSuccess() {
-   document.getElementById("log").innerHTML="Invocation sucessful";
+   $("#log").text("Invocation sucessful");
 }
 
 function onError(error) {
-  document.getElementById("log").innerHTML="Invocation error: " + error + "";
+  $("#log").text("Invocation error: " + error + "");
 }
 
 function invokeNFC() {
@@ -37,8 +37,8 @@ function invokeNFC() {
 
 function init(){
 	myPIN = blackberry.identity.uuid;
-	document.getElementById("data").innerHTML = "PIN: "+myPIN;
-	document.getElementById("btnNFC").onclick = invokeNFC;
+	$("#data").text = "PIN: "+myPIN;
+	$("#btnNFC").click(invokeNFC);
 }
 </script>
 </head>

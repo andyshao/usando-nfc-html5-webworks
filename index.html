@@ -37,7 +37,7 @@ function invokeNFC() {
 
 function init(){
 	myPIN = blackberry.identity.uuid;
-	$("#data").text = "PIN: "+myPIN;
+	$("#data").text("PIN: "+myPIN);
 	$("#btnNFC").click(invokeNFC);
 }
 </script>
